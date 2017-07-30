@@ -11,8 +11,7 @@ var cookieParser = require('cookie-parser');
 var path = require('path');
 var expressValidator = require('express-validator');
 var UserModel = require('./api/models/userModel.js');
-mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://<shahab>:<shahab>@ds129593.mlab.com:29593/giredb");
+
 
 app.use(cookieParser('secret'));
 app.use(session({

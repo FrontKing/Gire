@@ -1,7 +1,7 @@
 
-var mongoose = require('mongoose'),
+var mongoose = require('mongoose');
   User = mongoose.model('User');
-  mongoose.connect('mongodb://<test>:<test>@ds129593.mlab.com:29593/giredb');
+  
 exports.listOfUsers = function(req, res) {
   /*User.find({}, function(err, user) {
     if (err)

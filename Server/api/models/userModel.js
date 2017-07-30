@@ -1,7 +1,8 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.connect('mongodb://<test>:<test>@ds129593.mlab.com:29593/giredb');
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://test:test@ds129593.mlab.com:29593/giredb");
 
 var UserSchema = new Schema({
   name: {
