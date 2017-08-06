@@ -1,0 +1,10 @@
+// .mat-sidenav-content[style] {
+//     margin-right: 300px !important;
+//     margin-left: 0 !important;
+// }
+:host /deep/{
+.mat-icon.md-icon-logo {
+    width: 65px !important;
+    margin-top: 10px;
+}
+}

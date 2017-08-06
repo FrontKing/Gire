@@ -1,0 +1,61 @@
+<td-layout-nav-list #navList logo="assets:jire" toolbarTitle="جیره" [opened]="media.registerQuery('gt-sm') | async"
+  [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'" [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '300px' : '100%'">
+  <md-nav-list td-sidenav-content (click)="!media.query('gt-sm') && navList.close()">
+    <a md-list-item [routerLink]="['/']">
+      <md-icon md-list-avatar>inbox</md-icon>
+      <h5 md-line> خرج و دخل </h5>
+      <span class="md-caption tc-grey-600">6</span>
+    </a>
+    <a md-list-item [routerLink]="['/']">
+      <md-icon md-list-avatar>today</md-icon>
+      <h5 md-line>امروز</h5>
+      <span class="md-caption tc-grey-600">6</span>
+    </a>
+    <a md-list-item [routerLink]="['/']">
+      <md-icon md-list-avatar>date_range</md-icon>
+      <h5 md-line>هفته قبلی</h5>
+      <span class="md-caption tc-grey-600">۲</span>
+    </a>
+    <md-divider></md-divider>
+    <h3 md-subheader>
+      دسته بندی کارها
+    </h3>
+    <md-list>
+      <md-list-item>
+        <md-icon md-list-avatar>folder</md-icon>
+        <h5 md-line>خرید</h5>
+        <span class="md-caption tc-grey-600">4</span>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-avatar>folder</md-icon>
+        <h5 md-line>کاری</h5>
+      </md-list-item>
+      <md-list-item (click)="openDialog()">
+        <md-icon md-list-avatar>create_new_folder</md-icon>
+        <small md-line class="text-gray"> مدیریت دسته ها
+        </small>
+      </md-list-item>
+    </md-list>
+  </md-nav-list>
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <span flex></span>
+
+    <button md-icon-button [routerLink]="['/settings']">
+      <md-icon>settings_applications</md-icon>
+    </button>
+    <button md-icon-button class="ml-xs" [routerLink]="['/profile']">
+          <md-icon>account_box</md-icon>
+          <span class="md-caption">
+            521
+          </span>
+        </button>
+    <button md-icon-button (click)="logout()">
+      <md-icon>exit_to_app</md-icon>
+    </button>
+  </div>
+  <router-outlet></router-outlet>
+
+</td-layout-nav-list>
+<a md-fab color="accent" class="md-fab-position-bottom-right" style="position: fixed;" [routerLink]="['/']">
+  <md-icon>add</md-icon>
+</a>
