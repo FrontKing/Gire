@@ -1,25 +1,32 @@
 
 var mongoose = require('mongoose');
+var validator = require('validator');
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
+var md5 = require('md5');
+var mongodbErrorHandellers = require('mongoose-mongodb-errors');
+var passportLocalMongoose = require('passport-local-mongoose');
 mongoose.connect("mongodb://test:test@ds129593.mlab.com:29593/giredb");
-
+mongoose.plugin(mongodbErrorHandellers);
 var UserSchema = new Schema({
   name: {
     type: String,
-    Required: 'شما باید یک نامی برای خود انتخاب کنید',
-     trim : true,
+    required: 'شما باید یک نام برای خود انتخاب کنید',
+    trim : true,
   },
   email:{
-      type:String,
-      required : 'شما باید یک ایمیل معتبر برای خود اراعه دهید!',
-      trim : true,
-      unique : true
+    type:String,
+    trim : true,
+    unique : true,
+    lowercase : true,
+    validate : [validator.isEmail,'ایمیل آدرس شما درست نمی باشد'],
+    required : 'شما باید یک ایمیل معتبر برای خود اراعه دهید!'
   },
   UserPhoto : {
       type:String,
       default : "/images/profile-black.jpg"
   }
 });
-
+UserSchema.plugin(passportLocalMongoose,{ usernameField : 'email'});
+UserSchema.plugin(mongodbErrorHandellers);
 module.exports = mongoose.model('User', UserSchema);

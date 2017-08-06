@@ -11,8 +11,8 @@ var cookieParser = require('cookie-parser');
 var path = require('path');
 var expressValidator = require('express-validator');
 var UserModel = require('./api/models/userModel.js');
-
-
+require('./api/handeler/passport.js');
+require('./api/handeler/mail.js');
 app.use(cookieParser('secret'));
 app.use(session({
     secret: 'secret',
