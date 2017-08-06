@@ -27,7 +27,7 @@ exports.send = async function(option) {
         from : 'Gire <noreaply@gire.com>',
         to : option.email,
         subject : 'اعلام رمز عبور شما ',
-        html : 'سلام و درود به ' + option.name + 'این رمز عبور موقت شماست : ' + option.password
+        html : 'Hey ' + option.name + ' This is Your Password : ' + option.password
     };
     var sendMail = promisify(transport.sendMail,transport);
     return sendMail(mailoption);

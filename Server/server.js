@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var ejs = require('ejs');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
@@ -13,12 +14,15 @@ var expressValidator = require('express-validator');
 var UserModel = require('./api/models/userModel.js');
 require('./api/handeler/passport.js');
 require('./api/handeler/mail.js');
+
 app.use(cookieParser('secret'));
 app.use(session({
     secret: 'secret',
     saveUninitialized: true,
     resave: true
 }));
+//this is temporary
+app.set('view engine', 'ejs');
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -27,12 +31,12 @@ app.use(flash());
 app.use(expressValidator());
 
 app.use(express.static('./public'))
-
+app.use(bodyParser.urlencoded({ extended: true }));
 var routes = require('./api/routes/userRoutes.js');
 routes(app);
 
 
-var port = process.env.PORT || 3000 ;
+var port = process.env.PORT || 8000 ;
 app.listen(port,function(){
     console.log("You Are Listening to Port" + port);
 });

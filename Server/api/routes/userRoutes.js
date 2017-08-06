@@ -20,8 +20,8 @@ var authController = require('../controllers/authController.js');
   app.route('/login')
   .post(userController.login);
 
-  /*app.route('/')
-  .get(userController.index);*/
+  app.route('/')
+  .get(userController.index);
   
   app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
