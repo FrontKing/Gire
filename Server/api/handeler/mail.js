@@ -21,3 +21,14 @@ transport.sendMail({
     html : 'hey ' + name  +  ' this is Your Password : <a href="#"> ' + password + '</a> and You Cand Login With that',
     text : "text"
  })*/
+
+exports.send = async function(option) {
+    var mailoption = {
+        from : 'Gire <noreaply@gire.com>',
+        to : option.email,
+        subject : 'اعلام رمز عبور شما ',
+        html : 'سلام و درود به ' + option.name + 'این رمز عبور موقت شماست : ' + option.password
+    };
+    var sendMail = promisify(transport.sendMail,transport);
+    return sendMail(mailoption);
+};

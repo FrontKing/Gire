@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var promisify = require('es6-promisify'); 
 var uuid = require('uuid-random'); 
-require('./api/handeler/mail.js');
+var mail = require('../handeler/mail.js');
 exports.login = function(req, res) {
   
 };
@@ -36,14 +36,13 @@ await registerWithPromis(new_user,req.body.password);
 next();
 };
 
-exports.sendEmail = function(req, res){
-  transport.sendMail({
-    from : 'gire@noreaply.com',
-    to : req.body.email,
-    subject : 'just a test',
-    html : 'hey ' + req.body.name  +  ' this is Your Password : <a href="#">' + req.body.password + '</a>',
-    text : "Your Pass Word"
- });
+exports.sendEmail =  async function(req, res){
+  await mail.send({
+    name : req.body.name,
+    email : req.body.email,
+    password : req.body.passwrord
+  });
+  res.json({msg : 'رمز عبور شما به ایمیل شما فرستاده شده است',type : 'success'});
 };
 
 
