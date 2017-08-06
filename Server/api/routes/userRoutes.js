@@ -6,22 +6,17 @@ var authController = require('../controllers/authController.js');
 
   // user login and register
   app.route('/register')
-  //1. validate userinfo
-  //2. register them 
-  //3'. email them the password and tell them ur regestration is done!
-  // redirect them to using angular
-  .post(
-    userController.validateRegister,
-    userController.register,
-    userController.sendEmail
-    //authController.login
-  );
+  .post(userController.validateRegister,userController.register,userController.sendEmail);
 
   app.route('/login')
-  .post(userController.login);
+  .post(authController.login);
 
-  /*app.route('/')
-  .get(userController.index);*/
+
+  app.route('/register')
+  .get(userController.getReg);
+
+  app.route('/login')
+  .get(userController.index);
   
   app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
