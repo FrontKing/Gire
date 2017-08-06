@@ -5,16 +5,18 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var urlencodedParser = bodyParser.urlencoded({ extended: true });
 var flash = require('connect-flash');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 var expressValidator = require('express-validator');
-var UserModel = require('./api/models/userModel.js');
+require('./api/models/userModel.js');
 require('./api/handeler/passport.js');
 require('./api/handeler/mail.js');
 
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(cookieParser('secret'));
 app.use(session({
     secret: 'secret',
@@ -24,8 +26,6 @@ app.use(session({
 //this is temporary
 app.set('view engine', 'ejs');
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(flash());
 app.use(expressValidator());
