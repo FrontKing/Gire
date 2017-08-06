@@ -1,0 +1,26 @@
+<div dir="rtl">
+  <h2 md-dialog-title>مدیریت دسته ها</h2>
+  <md-dialog-content>
+    <md-input-container flex style="min-width: 100%">
+      <input mdInput type="text" name="categoru" value="" placeholder="دسته جدید رو بنویس و اینتر رو بزن...">
+    </md-input-container>
+    <md-divider></md-divider>
+    <md-card>
+      <md-list>
+        <md-list-item>
+          <span flex>کاری</span>
+          <button md-icon-button (click)="updateCategory()">
+              <md-icon>mode_edit</md-icon>
+            </button>
+          <button md-icon-button (click)="deleteCategory()">
+              <md-icon>delete</md-icon>
+            </button>
+        </md-list-item>
+        <md-divider></md-divider>
+      </md-list>
+    </md-card>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <button md-button md-dialog-close>بستن</button>
+  </md-dialog-actions>
+</div>

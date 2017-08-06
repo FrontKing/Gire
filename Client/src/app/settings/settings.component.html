@@ -1,0 +1,81 @@
+<md-toolbar color="primary">
+  <small class="text-lg">
+        <md-icon >more_vert</md-icon>
+    </small>
+  <span>تنظیمات</span>
+  <span flex></span>
+</md-toolbar>
+
+<md-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+  <md-card-content>
+    <md-tab-group>
+      <md-tab label="حساب کاربری">
+        <section fxLayout="row" fxLayout.lt-sm="column">
+          <div fxFlex.gt-md="20" fxFlex="100">
+            <div class="profile__image">
+              <img src="./../../assets/profile.png" alt="user's savatar">
+              <br>
+              <button color="primary" md-button> آپلود عکس پروفایل</button>
+            </div>
+          </div>
+          <div fxFlex.gt-md="33" fxFlex="100">
+            <md-input-container flex>
+              <input mdInput placeholder="نام" value="">
+              <span md-prefix><md-icon>person</md-icon></span>
+            </md-input-container>
+            <md-input-container flex>
+              <input mdInput placeholder="نام خانوادگی" value="">
+              <span md-prefix><md-icon>person</md-icon></span>
+            </md-input-container>
+            <md-input-container flex>
+              <input mdInput type="email" placeholder="ایمیل" value="">
+              <span md-prefix><md-icon>markunread</md-icon></span>
+            </md-input-container>
+          </div>
+          <div fxFlex.gt-md="33" fxFlex="100">
+            <md-input-container flex>
+              <input mdInput placeholder="رمز عبور قبلی" value="">
+              <span md-prefix><md-icon>lock</md-icon></span>
+            </md-input-container>
+            <md-input-container flex>
+              <input mdInput placeholder="رمز عبور جدید" value="">
+              <span md-prefix><md-icon>lock_outline</md-icon></span>
+            </md-input-container>
+            <md-input-container>
+              <input mdInput placeholder="تکرار رمز عبور جدید" value="">
+              <span md-prefix><md-icon>lock_outline</md-icon></span>
+            </md-input-container>
+          </div>
+        </section>
+        <button md-button md-raised-button color="primary">ثبت تغییرات</button>
+      </md-tab>
+      <md-tab label="اهداف و امتیاز">
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+          <div flex>
+            <md-input-container>
+              <input mdInput placeholder="هدف روزانه" value="۵">
+              <span md-prefix><md-icon>today</md-icon></span>
+              <md-hint align="end">
+                <span class="text-lg">انجام ۵ کار در روز</span>
+              </md-hint>
+            </md-input-container>
+            <br>
+            <md-input-container>
+              <input mdInput placeholder="هدف هفتگی" value="۲۵">
+              <span md-prefix><md-icon>date_range</md-icon></span>
+              <md-hint align="end">
+                <span class="text-lg">انجام ۲۵ کار در هفته</span>
+              </md-hint>
+            </md-input-container>
+          </div>
+          <div flex>
+            <md-slide-toggle checked="true">امتیاز</md-slide-toggle>
+            <small>ثبت امتیازات را فعال یا غیر فعال کنید.</small>
+          </div>
+        </div>
+        <br>
+        <button md-button md-raised-button color="primary">ثبت تغییرات</button>
+      </md-tab>
+    </md-tab-group>
+  </md-card-content>
+</md-card>
