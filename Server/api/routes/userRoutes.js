@@ -13,7 +13,7 @@ var authController = require('../controllers/authController.js');
   .post(
     userController.validateRegister,
     userController.register,
-    userController.sendEmail,
+    userController.sendEmail
     //authController.login
   );
 
