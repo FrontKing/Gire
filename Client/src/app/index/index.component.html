@@ -1,5 +1,5 @@
-<td-layout-nav-list #navList logo="assets:jire" toolbarTitle="جیره" [opened]="media.registerQuery('gt-sm') | async"
-  [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'" [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '300px' : '100%'">
+<td-layout-nav-list #navList logo="assets:jire" toolbarTitle="جیره" [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+  [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '300px' : '100%'">
   <md-nav-list td-sidenav-content (click)="!media.query('gt-sm') && navList.close()">
     <a md-list-item [routerLink]="['/']">
       <md-icon md-list-avatar>inbox</md-icon>
@@ -17,25 +17,11 @@
       <span class="md-caption tc-grey-600">۲</span>
     </a>
     <md-divider></md-divider>
-    <h3 md-subheader>
-      دسته بندی کارها
-    </h3>
-    <md-list>
-      <md-list-item>
-        <md-icon md-list-avatar>folder</md-icon>
-        <h5 md-line>خرید</h5>
-        <span class="md-caption tc-grey-600">4</span>
-      </md-list-item>
-      <md-list-item>
-        <md-icon md-list-avatar>folder</md-icon>
-        <h5 md-line>کاری</h5>
-      </md-list-item>
-      <md-list-item (click)="openDialog()">
-        <md-icon md-list-avatar>create_new_folder</md-icon>
-        <small md-line class="text-gray"> مدیریت دسته ها
-        </small>
-      </md-list-item>
-    </md-list>
+     <a md-list-item [routerLink]="['/']">
+      <md-icon md-list-avatar>trending_up</md-icon>
+      <h5 md-line>گزارش گیری</h5>
+      <span class="md-caption tc-grey-600">۲</span>
+    </a>
   </md-nav-list>
   <div td-toolbar-content layout="row" layout-align="center center" flex>
     <span flex></span>

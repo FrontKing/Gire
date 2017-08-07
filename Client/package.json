@@ -1,5 +1,5 @@
 {
-  "name": "covalent-quickstart",
+  "name": "gire",
   "version": "1.0.0-beta.3",
   "private": true,
   "description": "Quickstart App with @covalent packages",
@@ -17,7 +17,7 @@
     "stop-api": "pkill covalent-data",
     "webdriver-update": "bash ./node_modules/.bin/webdriver-manager update",
     "test": "ng test --code-coverage --single-run",
-    "ghpages-deploy": "ng build --base-href /covalent-quickstart/ --aot -prod --sourcemap=false && bash scripts/ghpages-deploy"
+    "deploy": "surge --domain https://gire.surge.sh -p dist"
   },
   "engines": {
     "node": ">4.4 < 7",

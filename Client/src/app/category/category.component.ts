@@ -13,5 +13,11 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
   }
+  updateCategory() {
 
+  }
+
+  deleteCategory () {
+    
+  }
 }
