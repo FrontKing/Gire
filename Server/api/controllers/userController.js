@@ -6,10 +6,6 @@ var uuid = require('uuid-random');
 var passport = require('passport');
 var mail = require('../handeler/mail.js');
 exports.validateRegister = function(req , res , next){
-  console.log(req.query);
-  if(req.query.length>0){
-    req.body = req.query;
-  }
   console.log(req.body);
   User.findOne({email : req.body.email || req.query.email },function(err,user){
     if(user){
