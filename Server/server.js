@@ -14,22 +14,6 @@ var expressValidator = require('express-validator');
 require('./api/models/userModel.js');
 require('./api/handeler/passport.js');
 require('./api/handeler/mail.js');
-
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(cookieParser('secret'));
-app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-    resave: true
-}));
-//this is temporary
-app.set('view engine', 'ejs');
-
-app.use(flash());
-app.use(expressValidator());
-
-app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(function(req, res, next) {
@@ -45,6 +29,22 @@ app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cookieParser('secret'));
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
+//this is temporary
+app.set('view engine', 'ejs');
+
+app.use(flash());
+app.use(expressValidator());
+
+app.use(express.static('./public'));
+
 var routes = require('./api/routes/userRoutes.js');
 routes(app);
 

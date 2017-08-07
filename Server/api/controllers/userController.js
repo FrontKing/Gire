@@ -13,7 +13,7 @@ exports.validateRegister = function(req , res , next){
       return ; 
     }
     else if(!user){ 
-      req.sanitizeBody('name');
+      //req.sanitizeBody('name');
       req.checkBody('name','شما باید یک نام برای خود انتخاب کنید').notEmpty();
       req.checkBody('email','شما باید یک ایمیل معتبر برای خود اراعه دهید!').notEmpty().isEmail();
       req.sanitizeBody('email').normalizeEmail();
