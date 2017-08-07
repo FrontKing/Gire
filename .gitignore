@@ -3,3 +3,4 @@ resource/
 .DS_Store
 *.log
 package-lock.json
+views/
