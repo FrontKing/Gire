@@ -30,8 +30,8 @@ app.use(flash());
 app.use(expressValidator());
 
 app.use(express.static('./public'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ type: 'application/json' }));
 app.use(function(req, res, next) {
   res.set('Access-Control-Allow-Origin', "*");
    // Request methods you wish to allow
