@@ -1,3 +1,4 @@
+import { UserService } from './services/user.service';
 import { NgModule, Type } from '@angular/core';
 import { BrowserModule, Title }  from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +23,7 @@ import { Dir } from '@angular/material/core/rtl/dir';
 import { SettingsComponent } from './settings/settings.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryItemComponent } from './category/category-item/category-item.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
@@ -48,19 +50,20 @@ const httpInterceptorProviders: Type<any>[] = [
         interceptor: RequestInterceptor, paths: ['**'],
       }],
     }),
-
     appRoutes,
     NgxChartsModule,
     ReactiveFormsModule,
     // FormsModule,
     CovalentSearchModule,
     MdDialogModule,
+    HttpClientModule
   ], // modules needed to run this module
   providers: [
     appRoutingProviders,
     httpInterceptorProviders,
     Title,
-    Dir
+    Dir,
+    UserService
   ], // additional providers needed for this module
   entryComponents: [ CategoryComponent ],
   bootstrap: [ AppComponent ],
