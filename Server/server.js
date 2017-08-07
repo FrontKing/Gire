@@ -26,12 +26,25 @@ app.use(session({
 //this is temporary
 app.set('view engine', 'ejs');
 
-
 app.use(flash());
 app.use(expressValidator());
 
-app.use(express.static('./public'))
+app.use(express.static('./public'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', "*");
+   // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 var routes = require('./api/routes/userRoutes.js');
 routes(app);
 

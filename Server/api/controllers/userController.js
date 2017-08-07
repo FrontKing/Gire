@@ -6,7 +6,7 @@ var uuid = require('uuid-random');
 var passport = require('passport');
 var mail = require('../handeler/mail.js');
 exports.validateRegister = function(req , res , next){
-  User.findOne({email : req.body.email},function(err,user){
+  User.findOne({email : req.body.email },function(err,user){
     if(user){
       console.log(user)
       res.json({'error' : 'این ایمیل قبلا استفاده شده است'});
@@ -32,7 +32,7 @@ exports.register = async function(req, res , next) {
   var new_user = new User({email : req.body.email, name : req.body.name});
   var registerWithPromis = promisify(User.register , User);
   await registerWithPromis(new_user,req.body.password);
-
+  console.log(req.body);
   next();
 };
 
