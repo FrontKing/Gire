@@ -43,7 +43,8 @@ exports.sendEmail =  async function(req, res){
   await mail.send({
     name : req.body.name,
     email : req.body.email,
-    password : req.body.password
+    password : req.body.password,
+    setpassUrl : 'https://gire.surge.sh/login'
   });
   res.json({data:[{
    message : 'رمز عبور شما به ایمیل شما فرستاده شده است',
