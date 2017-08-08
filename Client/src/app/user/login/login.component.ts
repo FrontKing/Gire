@@ -1,5 +1,7 @@
+import { UserService } from './../../services/user.service';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastyService, ToastOptions } from "ng2-toasty";
 
 import { TdLoadingService } from '@covalent/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -21,26 +23,49 @@ export class LoginComponent {
   form: FormGroup;
 
   constructor(private _router: Router,
-              private _loadingService: TdLoadingService, private fb: FormBuilder) {}
+    // private route: ActivatedRoute,
+    private _loadingService: TdLoadingService,
+    private userService: UserService,
+    private toastyService: ToastyService,
+    private router: Router,
+    private fb: FormBuilder) { }
 
   // regForm: Form;
-  createLoginForm () {
+  createLoginForm() {
     this.form = this.fb.group({
       email: email,
       password: password
     })
   }
-  
 
-  
+
+
   ngOnInit() {
     this.createLoginForm()
+    // console.log(this.route.snapshot.params['email']);
   }
 
-  onSubmit(value){
+  onSubmit(value) {
     console.log(value)
+    this.userService.login(value).subscribe(
+      data => {
+        console.log(data)
+        if (data["status"]) {
+          this.toastyService.success({
+            title: "ثبت نام انجام شد",
+            msg: data["status"],
+            theme: "default",
+            showClose: true,
+            timeout: 5000
+          })
+          this.router.navigate(["/index"])
+        }
+      },
+      err => {
+        console.error(err)
+      })
   }
-d
+
 }
 
 

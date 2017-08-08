@@ -22,7 +22,7 @@
       "styles.scss",
       "theme.scss",
       "../node_modules/@covalent/core/common/platform.css",
-      "../node_modules/ng2-toasty/bundles/style-material.css"
+      "../node_modules/ng2-toasty/bundles/style-default.css"
     ],
     "scripts": [
       "../node_modules/hammerjs/hammer.min.js",
