@@ -2,11 +2,6 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
-// exports.login = passport.authenticate('local', {
-//     failureRedirect : '/register',
-//     successRedirect : '/login'
-// });
-
 exports.login = function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {  
     if(info && info.message === "Password or username are incorrect" ){

@@ -5,12 +5,7 @@ var pug = require('pug');
 //var htmltotext = require('html-to-text');
 
 var transport = nodemailer.createTransport({
-    // host : 	'smtp.mailtrap.io',
-    // port : 2525,
-    // auth : {
-    //     user : '62bb235575587e' ,
-    //     pass : 'f2ded6a273336d' ,
-    // }
+   
     host : 	'smtp.gmail.com',
     port : 465,
     auth : {
@@ -29,7 +24,6 @@ exports.send = async function(option) {
         from : 'gire@noreaply.com',
         to : option.email,
         subject : 'اعلام رمز عبور شما ',
-        //'Hey ' + option.name + ' This is Your Password : ' + option.password
         html : html
     };
     var sendMail = promisify(transport.sendMail,transport);

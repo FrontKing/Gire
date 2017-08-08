@@ -48,7 +48,6 @@ exports.sendEmail =  async function(req, res){
   });
   res.json({data:[{
    message : 'رمز عبور شما به ایمیل شما فرستاده شده است',
-   password : req.body.password 
   }] ,status : 'success'});
 };
 
