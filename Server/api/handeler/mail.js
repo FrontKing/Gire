@@ -11,20 +11,10 @@ var transport = nodemailer.createTransport({
         pass : 'f2ded6a273336d' ,
     }
 });
-/*var name = "shahab";
-var email = "shahabvshahabi1996@gmail.com";
-var password = 'asdadasdassd'
-transport.sendMail({
-    from : 'gire@noreaply.com',
-    to : email,
-    subject : 'just a test',
-    html : 'hey ' + name  +  ' this is Your Password : <a href="#"> ' + password + '</a> and You Cand Login With that',
-    text : "text"
- })*/
 
 exports.send = async function(option) {
     var mailoption = {
-        from : 'Gire <noreaply@gire.com>',
+        from : 'gire@noreaply.com',
         to : option.email,
         subject : 'اعلام رمز عبور شما ',
         html : 'Hey ' + option.name + ' This is Your Password : ' + option.password

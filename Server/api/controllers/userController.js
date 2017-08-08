@@ -10,7 +10,8 @@ exports.validateRegister = function(req , res , next){
   User.findOne({email : req.body.email || req.query.email },function(err,user){
     if(user){
       console.log(user)
-      res.json({'error' : 'این ایمیل قبلا استفاده شده است'});
+      res.json({ status : 'error' , data: 
+       'این ایمیل قبلا استفاده شده است'});
       return ; 
     }
     else if(!user){ 
@@ -44,7 +45,10 @@ exports.sendEmail =  async function(req, res){
     email : req.body.email,
     password : req.body.password
   });
-  res.json({msg : 'رمز عبور شما به ایمیل شما فرستاده شده است',type : 'success'});
+  res.json({data:[{
+   message : 'رمز عبور شما به ایمیل شما فرستاده شده است',
+   password : req.body.password 
+  }] ,status : 'success'});
 };
 
 
