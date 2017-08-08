@@ -5,6 +5,7 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var cors = require('cors');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 var flash = require('connect-flash');
 var session = require('express-session');
@@ -14,21 +15,10 @@ var expressValidator = require('express-validator');
 require('./api/models/userModel.js');
 require('./api/handeler/passport.js');
 require('./api/handeler/mail.js');
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/json' }));
-app.use(function(req, res, next) {
-  res.set('Access-Control-Allow-Origin', "*");
-   // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser('secret'));
