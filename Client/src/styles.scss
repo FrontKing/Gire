@@ -1,24 +1,52 @@
 // Custom style for loading elements without height
 .will-load {
-    min-height: 80px;
+  min-height: 80px;
 }
 
 // Href line height wasn't right for md-icon-button
 a[md-icon-button] {
-    line-height: 36px;
+  line-height: 36px;
 }
 
 // Capitalize
 .text-capital {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 // Lighter font weight in sub-toolbars
 td-layout-manage-list .mat-toolbar {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 // .mat-sidenav-content {
 //     margin-right: 300px !important;
 //     margin-left: 0 !important;
 // }
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+.md-content,
+.mat-input-infix,
+.mat-card-actions,
+.mat-sidenav-content,
+button,
+.mat-hint,
+.md-caption,
+.mat-line,
+.mat-list-item-content,
+.mat-toolbar-layout,
+.mat-tab-label,
+.mat-tab-body,
+.mat-slide-toggle-content,
+.toast-msg,
+.toast-title,
+.mat-card {
+  font-family: Sahel, roboto, Arial !important;
+  /*direction: rtl;*/
+}

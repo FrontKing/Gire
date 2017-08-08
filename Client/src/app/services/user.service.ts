@@ -7,14 +7,14 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserService {
   
-  private url = "https://gire.herokuapp.com/register";
-  private headers = new Headers({ 'content-type': 'text/plain' });
+  private url = "https://gire.herokuapp.com";
+  private headers = new Headers({ 'content-type': 'application/json' });
   private options = new RequestOptions({ headers: this.headers });
 
   constructor(private http: Http) { }
   
-  public Register (payload) {
-    return this.http.post(this.url, payload, this.options)
+  public register (payload) {
+    return this.http.post(`${this.url}/register`, payload, this.options)
                .map(res => res.json())
                .catch(this.handleErrorObservable)
   }

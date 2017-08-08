@@ -1,6 +1,6 @@
 import { UserService } from './services/user.service';
 import { NgModule, Type } from '@angular/core';
-import { BrowserModule, Title }  from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CovalentCoreModule, CovalentSearchModule } from '@covalent/core';
@@ -24,6 +24,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryItemComponent } from './category/category-item/category-item.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastyModule } from "ng2-toasty";
+
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
@@ -56,7 +58,8 @@ const httpInterceptorProviders: Type<any>[] = [
     // FormsModule,
     CovalentSearchModule,
     MdDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastyModule.forRoot(),
   ], // modules needed to run this module
   providers: [
     appRoutingProviders,
@@ -65,7 +68,7 @@ const httpInterceptorProviders: Type<any>[] = [
     Dir,
     UserService
   ], // additional providers needed for this module
-  entryComponents: [ CategoryComponent ],
-  bootstrap: [ AppComponent ],
+  entryComponents: [CategoryComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
