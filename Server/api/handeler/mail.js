@@ -4,11 +4,17 @@ var promisify = require('es6-promisify');
 //var htmltotext = require('html-to-text');
 
 var transport = nodemailer.createTransport({
-    host : 	'smtp.mailtrap.io',
-    port : 2525,
+    // host : 	'smtp.mailtrap.io',
+    // port : 2525,
+    // auth : {
+    //     user : '62bb235575587e' ,
+    //     pass : 'f2ded6a273336d' ,
+    // }
+    host : 	'smtp.gmail.com',
+    port : 465,
     auth : {
-        user : '62bb235575587e' ,
-        pass : 'f2ded6a273336d' ,
+        user : 'shahabvshahabi1996@gmail.com' ,
+        pass : 'shahab51010' ,
     }
 });
 
