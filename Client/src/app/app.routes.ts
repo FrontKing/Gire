@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { ForgotComponent } from './user/forgot/forgot.component';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,16 +11,17 @@ import { SettingsComponent } from './settings/settings.component';
 
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'forgot', component: ForgotComponent},
-  {path: '', component: IndexComponent,
-   children: [
-        {path: '', component: ProfileComponent },
-        {path: 'profile', component: ProfileComponent},
-        {path: 'settings', component: SettingsComponent}
-      ]
-    }
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'forgot', component: ForgotComponent },
+  {
+    path: '', component: IndexComponent, runGuardsAndResolvers: 'always', canActivate: [AuthGuard],
+    children: [
+      { path: '', component: ProfileComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'settings', component: SettingsComponent }
+    ]
+  }
 ];
 
 export const appRoutingProviders: any[] = [
