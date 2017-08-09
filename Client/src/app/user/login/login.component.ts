@@ -17,6 +17,8 @@ const password = new FormControl('', Validators.compose([Validators.required, Va
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  loading: boolean = false;
+
 
   username: string;
   password: string;
@@ -47,22 +49,33 @@ export class LoginComponent {
 
   onSubmit(value) {
     console.log(value)
+    this.loading = true;
     this.userService.login(value).subscribe(
       data => {
         console.log(data)
+        this.loading = false;
         if (data["status"]) {
           this.toastyService.success({
-            title: "ثبت نام انجام شد",
+            title: "خوش آمدید 👋",
             msg: data["status"],
             theme: "default",
             showClose: true,
             timeout: 5000
           })
-          this.router.navigate(["/index"])
+          this.userService._isLoggedIn = true;
+          this.router.navigate(['/'])
         }
       },
       err => {
         console.error(err)
+        this.loading = false;
+        this.toastyService.error({
+          title: "خطایی رخ داده",
+          msg: "خطایی غیرمنتظره رخ داده است",
+          theme: "default",
+          showClose: true,
+          timeout: 5000
+        })
       })
   }
 

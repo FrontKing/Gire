@@ -44,7 +44,7 @@
                               </small>-->
 
               <p class="pad-top-sm">
-                <button md-raised-button class="btn-block" color="accent" [disabled]="!form.valid"> ساخت حساب</button>
+                <button md-raised-button class="btn-block" color="accent" [disabled]="!form.valid || loading">{{ loading ? 'لطفا شکیبا باشید ...' : 'ساخت حساب'}} </button>
               </p>
             </form>
           </md-card-content>
