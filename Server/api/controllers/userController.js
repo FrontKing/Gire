@@ -44,11 +44,44 @@ exports.sendEmail =  async function(req, res){
     name : req.body.name,
     email : req.body.email,
     password : req.body.password,
+    filename : 'password-set',
+    subject : 'اعلام رمز عبور',
     setpassUrl : 'https://gire.surge.sh/login'
   });
   res.json({data:[{
    message : 'رمز عبور شما به ایمیل شما فرستاده شده است',
   }] ,status : 'success'});
+};
+
+exports.send_setPasswordToEmail = async function(req,res){
+  var user = await User.findOne({email : req.body.email});
+  user.token = undefined;
+  user.expiredToken = undefined;
+  var password = uuid();
+  password = password.split('').slice(0 , 6).join('');
+  var setPassword = promisify(user.setPassword,user);
+  await setPassword(password);
+  await mail.send({
+    name : user.name,
+    email : user.email,
+    password : password,
+    filename : 'password-reset',
+    subject : 'فراموشی رمز ',
+    setpassUrl : 'https://gire.surge.sh/login'
+  });
+  res.json({status : 'success',data : 'رمز به ایمیل شما فرستاده شد'})
+};
+
+exports.confirmEmail = async function(req,res,next){
+  var user = await User.findOne({email : req.body.email});
+  if(user){
+    next();
+    return;
+  }
+  else if(!user){
+    res.json({status : 'error', data : 'شما هنوز ثبت نام نکرده اید!'});
+    return ;
+  }
 };
 
 exports.confirmPassword = function(req,res,next){

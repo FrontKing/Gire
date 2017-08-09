@@ -14,7 +14,7 @@ var transport = nodemailer.createTransport({
     }
 });
 var generateTohtml = function(option){
-    var html = pug.renderFile(__dirname + '/../../views/email/password-set.pug',option);
+    var html = pug.renderFile(__dirname + '/../../views/email/' + filename + '.pug',option);
     return html;
 }
 exports.send = async function(option) {
@@ -23,7 +23,7 @@ exports.send = async function(option) {
     var mailoption = {
         from : 'gire@noreaply.com',
         to : option.email,
-        subject : 'اعلام رمز عبور شما ',
+        subject : option.subject,
         html : html
     };
     var sendMail = promisify(transport.sendMail,transport);

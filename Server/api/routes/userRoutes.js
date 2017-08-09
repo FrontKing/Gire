@@ -17,18 +17,18 @@ var authController = require('../controllers/authController.js');
     userController.setToken
   );
 
- app.route('/setting/set')
+ app.route('/accout/set')
  .post(
    userController.confirmToken,
    userController.confirmPassword,
    userController.updatePassword
  );
 
-  //  app.route('/setting/forgot')
-  //  .post(
-  //   userController.forgot,
-  //   userController.confirmPassword
-  // );
+   app.route('/accout/forgot')
+   .post(
+    userController.confirmEmail,
+    userController.send_setPasswordToEmail
+  );
 
   app.route('/register')
   .get(userController.getReg);
