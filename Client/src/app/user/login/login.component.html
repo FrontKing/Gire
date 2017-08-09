@@ -1,47 +1,47 @@
 <div layout="column" layout-fill>
-    <!--<md-toolbar color="primary" class="md-whiteframe-z1">
+  <!--<md-toolbar color="primary" class="md-whiteframe-z1">
         <span>ورود به حساب کاربری</span>
     </md-toolbar>-->
-    <div class="md-content bg-login" layout-padding flex>
-        <div layout-gt-xs="row" layout-align-gt-xs="center center" class="margin">
-            <div flex-gt-md="35" flex="100">
-                <!--<md-icon class="md-icon-logo text-center" svgIcon="assets:covalent"></md-icon>-->
-                <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push-top-lg']" class="auth-box">
-                    <md-card-title>
-                        <strong class="auth-text">ورود</strong>
-                    </md-card-title>
-                    <md-card-subtitle class="text-left">
-                        عضو نیستم،
-                        <strong><a class="link" [routerLink]="['/register']">ثبت نام می کنم</a></strong>
-                    </md-card-subtitle>
-                    <md-card-content>
-                        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-                            <div layout="row">
-                                <md-input-container flex>
-                                    <input mdInput placeholder="ایمیل" maxlength="30" type="email" dir="ltr" [formControl]="form.controls['email']" required>
-                                    <span md-prefix><md-icon>person</md-icon></span>
-                                </md-input-container>
-                            </div>
-                            <div layout="row">
-                                <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="tc-red-500"> ایمیل خود را وارد کنید.</small>
-                                <small *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched" class="tc-red-500"> ایمیل معتبری را وارد کنید.</small>
-                            </div>
+  <div class="md-content bg-login" layout-padding flex>
+    <div layout-gt-xs="row" layout-align-gt-xs="center center" class="margin">
+      <div flex-gt-md="35" flex="100">
+        <!--<md-icon class="md-icon-logo text-center" svgIcon="assets:covalent"></md-icon>-->
+        <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push-top-lg']" class="auth-box">
+          <md-card-title>
+            <strong class="auth-text">ورود</strong>
+          </md-card-title>
+          <md-card-subtitle class="text-left">
+            عضو نیستم،
+            <strong><a class="link" [routerLink]="['/register']">ثبت نام می کنم</a></strong>
+          </md-card-subtitle>
+          <md-card-content>
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+              <div layout="row">
+                <md-input-container flex>
+                  <input mdInput placeholder="ایمیل" maxlength="30" type="email" dir="ltr" [formControl]="form.controls['email']" required>
+                  <span md-prefix><md-icon>person</md-icon></span>
+                </md-input-container>
+              </div>
+              <div layout="row">
+                <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="tc-red-500"> ایمیل خود را وارد کنید.</small>
+                <small *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched" class="tc-red-500"> ایمیل معتبری را وارد کنید.</small>
+              </div>
 
-                            <div layout="row">
-                                <md-input-container flex>
-                                    <input mdInput placeholder="رمزعبور" maxlength="30" type="password" dir="ltr" [formControl]="form.controls['password']" required>
-                                    <span md-prefix><md-icon>lock</md-icon></span>
-                                    <md-hint align="end">
-                                        <span class="text-lg"><a class="link" [routerLink]="['/forgot']">فراموشی رمزعبور؟</a></span>
-                                    </md-hint>
-                                </md-input-container>
-                            </div>
-                            <div layout="row">
-                                <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="tc-red-500"> رمزعبور را وارد کنید.</small>
-                                <small *ngIf="form.controls['password'].hasError('minlength') && form.controls['password'].touched" class="tc-red-500"> رمزعبور نمی تواند کمتر از شش کاراکتر باشد.</small>
-                            </div>
+              <div layout="row">
+                <md-input-container flex>
+                  <input mdInput placeholder="رمزعبور" maxlength="30" type="password" dir="ltr" [formControl]="form.controls['password']" required>
+                  <span md-prefix><md-icon>lock</md-icon></span>
+                  <md-hint align="end">
+                    <span class="text-lg"><a class="link" [routerLink]="['/forgot']">فراموشی رمزعبور؟</a></span>
+                  </md-hint>
+                </md-input-container>
+              </div>
+              <div layout="row">
+                <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="tc-red-500"> رمزعبور را وارد کنید.</small>
+                <small *ngIf="form.controls['password'].hasError('minlength') && form.controls['password'].touched" class="tc-red-500"> رمزعبور نمی تواند کمتر از شش کاراکتر باشد.</small>
+              </div>
 
-                            <!--<small class="tc-green-500">
+              <!--<small class="tc-green-500">
                               <md-icon class="text-xl">done</md-icon>
                               رمزعبور به ایمیل تان ارسال شد 😊
                               </small>
@@ -50,13 +50,13 @@
                               <md-icon class="text-xl">error_outline</md-icon>
                               مشکلی پیش آمده است ☹️
                               </small>-->
-                            <p class="pad-top-sm">
-                                <button md-raised-button class="btn-block" color="accent" [disabled]="!form.valid"> ورود به حساب</button>
-                            </p>
-                        </form>
-                    </md-card-content>
-                </md-card>
-            </div>
-        </div>
+              <p class="pad-top-sm">
+                <button md-raised-button class="btn-block" color="accent" [disabled]="!form.valid || loading">{{ loading ? 'لطفا شکیبا باشید ...' : 'ورود به حساب'}}</button>
+              </p>
+            </form>
+          </md-card-content>
+        </md-card>
+      </div>
     </div>
+  </div>
 </div>

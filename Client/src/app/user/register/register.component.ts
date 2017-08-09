@@ -15,7 +15,7 @@ const password = ' ';
 export class RegisterComponent implements OnInit {
 
   public form: FormGroup;
-
+  public loading: boolean = false;
   // regForm: Form;
   createRegForm() {
     this.form = this.fb.group({
@@ -34,21 +34,14 @@ export class RegisterComponent implements OnInit {
 
     this.createRegForm()
 
-    this.toastyService.wait(<ToastOptions>{
-      title: "شکیبا باشید ...",
-      msg: "در حال برقراری ارتباط با سرور",
-      theme: "default",
-      showClose: true,
-      timeout: 5000
-    });
   }
 
   onSubmit(value) {
-
+    this.loading = true;
     this.userService.register(value).subscribe(
       data => {
         console.log(data);
-
+        this.loading = false;
         if (data["status"] == "success") {
           let msg = data["data"];
 
@@ -61,7 +54,7 @@ export class RegisterComponent implements OnInit {
             showClose: true,
             timeout: 5000
           })
-          // this.router.navigate(['/login', value["email"]])
+          this.router.navigate(['/login'])
         } else if (data["status"] == "error") {
           this.toastyService.warning({
             title: "مجدد تلاش کنید!",
@@ -72,7 +65,17 @@ export class RegisterComponent implements OnInit {
           })
         }
       },
-      err => console.error(err)
+      err => {
+        console.error(err => err.json())
+        this.loading = false;
+        this.toastyService.error({
+          title: "خطایی رخ داده",
+          msg: "خطایی غیرمنتظره رخ داده است",
+          theme: "default",
+          showClose: true,
+          timeout: 5000
+        })
+      }
     )
   }
 }
