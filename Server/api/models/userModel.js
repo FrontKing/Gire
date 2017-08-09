@@ -7,7 +7,7 @@ var md5 = require('md5');
 var mongodbErrorHandellers = require('mongoose-mongodb-errors');
 var passportLocalMongoose = require('passport-local-mongoose');
 
-mongoose.connect("mongodb://test:test@ds129593.mlab.com:29593/giredb");
+mongoose.connect(process.env.DB_HOST);
 mongoose.plugin(mongodbErrorHandellers);
 var UserSchema = new Schema({
   name: {

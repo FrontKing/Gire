@@ -6,11 +6,11 @@ var pug = require('pug');
 
 var transport = nodemailer.createTransport({
    
-    host : 	'smtp.gmail.com',
-    port : 465,
+    host : 	process.env.EMAIL_HOST,
+    port : process.env.EMAIL_PORT,
     auth : {
-        user : 'shahabvshahabi1996@gmail.com' ,
-        pass : 'shahab51010' ,
+        user : process.env.AUTH_USER ,
+        pass : process.env.AUTH_PASS ,
     }
 });
 var generateTohtml = function(option){
