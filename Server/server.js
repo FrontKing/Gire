@@ -40,7 +40,7 @@ var routes = require('./api/routes/userRoutes.js');
 routes(app);
 
 
-var port = process.env.HOST_PORT || 8000 ;
+var port = process.env.PORT || 8000 ;
 app.listen(port,function(){
     console.log("You Are Listening to Port" + port);
 });
