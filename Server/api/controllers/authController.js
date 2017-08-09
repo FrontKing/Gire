@@ -28,7 +28,7 @@ exports.login = function(req, res, next) {
   })(req, res, next);
 }
 
-exports.logout = function(req,res){
+exports.logout = async function(req,res){
     var user = await User.find({
       token : req.body.token ,
       expiredToken : { $gt : Date.now()}
