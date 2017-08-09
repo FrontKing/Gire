@@ -10,6 +10,7 @@ export class UserService {
   private url = "https://gire.herokuapp.com";
   private headers = new Headers({ 'content-type': 'application/json' });
   private options = new RequestOptions({ headers: this.headers });
+  public _isLoggedIn = false;
 
   constructor(private http: Http) { }
 
@@ -26,6 +27,12 @@ export class UserService {
     return this.post(payload, `${this.url}/login`)
   }
 
+  public isLoggedIn(): boolean {
+    return this._isLoggedIn;
+  }
+
+
+
 
 
   private extractData(res: Response) {
@@ -33,7 +40,7 @@ export class UserService {
   }
 
   private handleErrorObservable(error: Response | any) {
-    console.error(error.message || error);
+    console.error(JSON.parse(error._body) || error);
     return Observable.throw(error.message || error);
   }
 }

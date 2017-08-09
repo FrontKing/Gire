@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { UserService } from './services/user.service';
 import { NgModule, Type } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
@@ -66,7 +67,8 @@ const httpInterceptorProviders: Type<any>[] = [
     httpInterceptorProviders,
     Title,
     Dir,
-    UserService
+    UserService,
+    AuthGuard
   ], // additional providers needed for this module
   entryComponents: [CategoryComponent],
   bootstrap: [AppComponent],
