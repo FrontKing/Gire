@@ -5,11 +5,11 @@ var promisify = require('es6-promisify');
 var uuid = require('uuid-random'); 
 var passport = require('passport');
 var mail = require('../handeler/mail.js');
-exports.validateRegister = function(req , res , next){
+exports.validateRegister = async function(req , res , next){
   console.log(req.body);
-  User.findOne({email : req.body.email || req.query.email },function(err,user){
+  await User.findOne({email : req.body.email },function(err,user){
     if(user){
-      console.log(user)
+      console.log(user);
       res.json({ status : 'error' , data: 
        'این ایمیل قبلا استفاده شده است'});
       return ; 
@@ -51,7 +51,48 @@ exports.sendEmail =  async function(req, res){
   }] ,status : 'success'});
 };
 
+exports.confirmPassword = function(req,res,next){
+  if(req.body.password === req.body['password-confirm']){
+    next();
+    return ;
+  }
+  else{
+    res.json({status : "error",data : 'رمز عبور با تکرار رمز مطابقت ندارد!' });
+    return ; 
+  }
+};
 
+exports.updatePassword = async function(req,res){
+  var user = await User.findOne({email : req.body.email});
+  var setPassword = promisify(user.setPassword,user);
+  await setPassword(req.body.password);
+  res.json({ status : 'success', data : 'رمز شما با موفقیت تغییر پیدا کرد'});
+};
+
+exports.confirmToken = async function(req,res,next){
+  var user = await User.find({
+    token : req.body.token ,
+    expiredToken : { $gt : Date.now()}
+  });
+  if(user){
+    next();
+    return ; 
+  }
+  if(!user){
+    res.json({status : 'error' ,data : 'شما هنوز عضو نشده اید یا باید دوباره وارد شوید!'})
+  }
+};
+exports.setToken = async function(req,res){
+  var user = await User.findOne({email : req.body.email})
+  var token = uuid();
+  user.token = token;
+  user.expiredToken = Date.now() + 172800000 ;
+  await user.save();
+  res.status(200).json({
+      status: 'شما با موفقیت وارد شدید!',
+      user : user
+  });
+}
 exports.index = function(req,res){
   res.render('login');
 };

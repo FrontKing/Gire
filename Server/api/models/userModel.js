@@ -26,7 +26,9 @@ var UserSchema = new Schema({
   UserPhoto : {
       type:String,
       default : "/images/profile-black.jpg"
-  }
+  },
+  token : String,
+  expiredToken : Date
 });
 UserSchema.plugin(passportLocalMongoose,{ usernameField : 'email'});
 UserSchema.plugin(mongodbErrorHandellers);

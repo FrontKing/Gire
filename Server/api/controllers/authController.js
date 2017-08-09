@@ -11,25 +11,39 @@ exports.login = function(req, res, next) {
       return next(err);
     }
     if (!user) {
-      return res.status(401).json({
-        err: info
+      return res.json({
+        status : 'error',
+        data: info
       });
     }
     req.logIn(user, function(err) {
       if (err) {
-        return res.status(500).json({
-          err: 'به دلیلی نمیتوان وارد شد'
+        return res.json({
+          status : 'error',
+          data : 'به دلیلی نمیتوان وارد شد'
         });
       }
-      res.status(200).json({
-        status: 'شما با موفقیت وارد شدید!',
-        user : user
-      });
+      next();
     });
   })(req, res, next);
 }
 
 exports.logout = function(req,res){
-    req.logout();
-    res.json({'msg' : 'شما با موفیت خارج شدید!'});
+    var user = await User.find({
+      token : req.body.token ,
+      expiredToken : { $gt : Date.now()}
+    });
+    if(user){
+      user.token = undefined;
+      user.expiredToken = undefined;
+      req.logout();
+      res.json({status : 'success' , data : 'شما با موفقیت خارج شدید!'});
+    }
+    if(!user){
+      res.json({
+        status : 'error',
+        data : 'شما هنوز عضو نشده اید یا باید دوباره وارد شوید!'
+      });
+      return ;
+    }
 }
