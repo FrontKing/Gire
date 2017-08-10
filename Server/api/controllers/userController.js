@@ -57,13 +57,18 @@ exports.sendEmail =  async function(req, res){
 };
 
 exports.send_setPasswordToEmail = async function(req,res){
+  
   var user = await User.findOne({email : req.body.email});
   user.token = undefined;
   user.expiredToken = undefined;
   var password = uuid();
-  password = password.split('').slice(0 , 6).join('');
-  var setPassword = promisify(user.setPassword,user);
-  await setPassword(password);
+  var new_password = password.split('').slice(0 , 6).join('');
+  // var setPassword = promisify(user.setPassword,user);
+  await user.setPassword(new_password , function(){
+      return user.save();
+      //res.status(200).json({message: 'password reset successful'});
+  });
+  //await setPassword(new_password);
   await mail.send({
     name : user.name,
     email : user.email,
@@ -72,7 +77,8 @@ exports.send_setPasswordToEmail = async function(req,res){
     subject : 'فراموشی رمز ',
     setpassUrl : 'https://gire.surge.sh/login'
   });
-  res.json({status : 'success',data : 'رمز به ایمیل شما فرستاده شد'})
+  console.log("password Reset Sent!");
+  res.json({status : 'success',data :[ 'رمز به ایمیل شما فرستاده شد' , new_password]});
 };
 
 exports.confirmEmail = async function(req,res,next){
