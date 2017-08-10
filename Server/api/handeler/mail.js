@@ -5,7 +5,7 @@ var pug = require('pug');
 
 var transport = nodemailer.createTransport({
     host : 'smtp.mailtrap.io',
-    port : 465,
+    port : 2525,
     auth : {
         user : '62bb235575587e' ,
         pass : 'f2ded6a273336d' ,
@@ -16,6 +16,7 @@ var generateTohtml = function(option){
     return html;
 };
 exports.send = async function(option) {
+    console.log('making email');
     var html =  await generateTohtml(option);
     var mailoption = {
         from : 'gire@noreaply.com',
@@ -24,5 +25,6 @@ exports.send = async function(option) {
         html : html
     };
     var sendMail = promisify(transport.sendMail,transport);
+    console.log("email didnt sent");
     return sendMail(mailoption);
 };
