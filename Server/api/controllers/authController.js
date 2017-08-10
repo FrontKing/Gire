@@ -29,13 +29,14 @@ exports.login = function(req, res, next) {
 }
 
 exports.logout = async function(req,res){
-    var user = await User.find({
+    var user = await User.findOne({
       token : req.body.token ,
       expiredToken : { $gt : Date.now()}
     });
     if(user){
       user.token = undefined;
       user.expiredToken = undefined;
+      await user.save();
       req.logout();
       res.json({status : 'success' , data : 'شما با موفقیت خارج شدید!'});
     }

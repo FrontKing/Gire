@@ -72,7 +72,7 @@ exports.send_setPasswordToEmail = async function(req,res){
   await mail.send({
     name : user.name,
     email : user.email,
-    password : password,
+    password : new_password,
     filename : 'password-reset',
     subject : 'فراموشی رمز ',
     setpassUrl : 'https://gire.surge.sh/login'
