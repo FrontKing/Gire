@@ -12,7 +12,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 var expressValidator = require('express-validator');
-require('dotenv').config()
+require('dotenv').config();
 require('./api/models/userModel.js');
 require('./api/handeler/passport.js');
 require('./api/handeler/mail.js');

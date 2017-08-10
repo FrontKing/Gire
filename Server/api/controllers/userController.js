@@ -5,6 +5,7 @@ var promisify = require('es6-promisify');
 var uuid = require('uuid-random'); 
 var passport = require('passport');
 var mail = require('../handeler/mail.js');
+
 exports.validateRegister = async function(req , res , next){
   console.log(req.body);
   await User.findOne({email : req.body.email },function(err,user){
@@ -39,7 +40,7 @@ exports.register = async function(req, res , next) {
 };
 
 exports.sendEmail =  async function(req, res){
-  console.log(req.body.password)
+  console.log(req.body.password);
   await mail.send({
     name : req.body.name,
     email : req.body.email,
@@ -48,8 +49,10 @@ exports.sendEmail =  async function(req, res){
     subject : 'اعلام رمز عبور',
     setpassUrl : 'https://gire.surge.sh/login'
   });
+  console.log("Email Sent!");
   res.json({data:[{
    message : 'رمز عبور شما به ایمیل شما فرستاده شده است',
+   password : req.body.password
   }] ,status : 'success'});
 };
 
@@ -73,6 +76,7 @@ exports.send_setPasswordToEmail = async function(req,res){
 };
 
 exports.confirmEmail = async function(req,res,next){
+  console.log(req.body);
   var user = await User.findOne({email : req.body.email});
   if(user){
     next();
