@@ -113,12 +113,14 @@ exports.updatePassword = async function(req,res){
 };
 
 exports.confirmToken = async function(req,res,next){
+  console.log(req.body);
   var user = await User.find({
     token : req.body.token ,
     expiredToken : { $gt : Date.now()}
   });
   if(user){
     next();
+    console.log("token confirmed");
     return ; 
   }
   if(!user){

@@ -29,6 +29,7 @@ var UserSchema = new Schema({
   },
   token : String,
   expiredToken : Date
+
 });
 UserSchema.plugin(passportLocalMongoose,{ usernameField : 'email'});
 UserSchema.plugin(mongodbErrorHandellers);

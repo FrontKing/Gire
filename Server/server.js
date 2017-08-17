@@ -13,7 +13,10 @@ var cookieParser = require('cookie-parser');
 var path = require('path');
 var expressValidator = require('express-validator');
 require('dotenv').config();
+require('./api/models/incomeModel.js');
+require('./api/models/spendModel.js');
 require('./api/models/userModel.js');
+require('./api/models/cateModel.js');
 require('./api/handeler/passport.js');
 require('./api/handeler/mail.js');
 app.use(cors());
@@ -36,9 +39,8 @@ app.use(expressValidator());
 
 app.use(express.static('./public'));
 
-var routes = require('./api/routes/userRoutes.js');
+var routes = require('./api/routes/Routes.js'); 
 routes(app);
-
 
 var port = process.env.PORT || 8000 ;
 app.listen(port,function(){
